@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package taskManager;
+
+option go_package = "task-manager/proto;proto";
+
+service TaskService {
+  rpc AddTask (AddTaskRequest) returns (AddTaskResponse);
+  rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
+  rpc ListTask (ListTaskRequest) returns (ListTaskResponse);
+  rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
+}
+
+message AddTaskRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message AddTaskResponse {
+  string name = 1;
+}
+
+message GetTaskRequest {
+  string id = 1;
+}
+
+message GetTaskResponse {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message ListTaskRequest {}
+
+message ListTaskResponse {
+  repeated Task task = 1;
+}
+
+message DeleteTaskRequest {
+  string id = 1;
+}
+
+message DeleteTaskResponse {
+  string message = 1;
+}
+
+message Task {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
